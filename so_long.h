@@ -15,12 +15,14 @@ typedef enum e_tiletype
 	WALL = '1',
 	COLLECTABLE = 'C',
 	PLAYER = 'P',
-	EXIT = 'E'
+	EXIT = 'E',
+	ENEMY = 'M'
 }	t_tiletype;
 
 typedef struct s_tile
 {
 	t_tiletype		type;
+	t_tiletype		og_type;
 	t_vector		position;
 	struct s_tile	*up;
 	struct s_tile	*down;
@@ -62,6 +64,53 @@ typedef struct s_effect
 	int			counter;
 }	t_effect;
 
+/* An image that covers the whole window */
+typedef struct s_panel
+{
+	void		*pointer;
+	char		*pixels;
+	t_vector	size;
+	int			bpp;
+	int			line_size;
+	int			endian;
+}	t_panel;
+
+/* Color */
+typedef struct s_color
+{
+	int	r;
+	int	g;
+	int	b;
+	int	a;
+}	t_color;
+
+// ---------- ENEMIES
+
+typedef enum e_enemytype
+{
+	HORIZONTAL = 'H',
+	VERTICAL = 'V',
+	FOLLOWER = 'F'
+}	t_enemyytpe;
+
+typedef struct s_enemy_imgs
+{
+	void	*current;
+	int		anim_frames;
+	void	*img_01;
+	void	*img_02;
+}	t_enemy_img;
+
+/* Struct to make a list of enemies */
+typedef struct s_enemy
+{
+	t_enemyytpe			type;
+	int					dir;
+	t_tile				*og_tile;
+	t_tile				*tile;
+	struct s_enemy		*next;
+}	t_enemy;
+
 // ---------- GAME
 
 /* All valid input keys */
@@ -71,6 +120,7 @@ enum e_keycode
 	KEY_DOWN = 1,
 	KEY_LEFT = 0,
 	KEY_RIGHT = 2,
+	RESET = 15,
 	ESC = 53
 };
 
@@ -95,14 +145,19 @@ typedef struct s_game
 	t_vector		wndw_size;
 	t_tile			**tilemap;
 	t_player		player;
+	int				og_collects;
 	int				collects;
 	int				moves;
+	t_enemy			*enemy_list;
 	t_vector		img_size;
 	t_wall_img		wall_imgs;
 	t_collect_img	collects_imgs;
+	t_enemy_img		enemy_imgs;
 	void			*door_open_img;
 	void			*door_close_img;
 	t_effect		effect;
+	void			*red_panel;
+	void			*white_panel;
 }	t_game;
 
 // ---------------------------
@@ -112,10 +167,19 @@ t_tile	**map_init(int argc, char **argv, t_game *game);
 t_tile	**generate_tilemap(char **map, t_game *game);
 void	game_init(t_game *game);
 
+t_color	new_color(int r, int g, int b, int a);
+void	*new_panel(t_game *game, t_color color);
+
 int		input(int key, t_game *game);
 int		update(t_game *game);
 void	render(t_game game);
 
+void	effect_anim(t_effect *effect, t_vector pos);
+void	action_anim(t_player *player);
+void	color_window(t_game *game, int color);
+
+void	remove_player(t_game *game);
+int		reset(t_game *game);
 int		end_program(t_game *game);
 
 #endif

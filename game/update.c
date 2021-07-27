@@ -43,12 +43,26 @@ static void	effect_animation(t_effect *effect)
 		effect->counter++;
 }
 
+static void	enemy_animation(t_enemy_img *img)
+{
+	static int	counter;
+
+	if (counter == img->anim_frames)
+		img->current = img->img_01;
+	else if (counter > img->anim_frames * 2)
+	{
+		img->current = img->img_02;
+		counter = 0;
+	}
+	counter++;
+}
+
 int	update(t_game *game)
 {
-	mlx_clear_window(game->mlx, game->window);
 	player_animation(&game->player);
 	collec_animation(&game->collects_imgs);
 	effect_animation(&game->effect);
+	enemy_animation(&game->enemy_imgs);
 	render(*game);
 	return (1);
 }

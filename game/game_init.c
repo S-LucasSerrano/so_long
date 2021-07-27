@@ -27,7 +27,7 @@ t_tile	**map_init(int argc, char **argv, t_game *game)
 	return (tilemap);
 }
 
-/* Starts the mlx, opens a window, and creates images */
+/* Starts the mlx, opens a window, and open images */
 void	game_init(t_game *game)
 {
 	game->mlx = mlx_init();
@@ -37,4 +37,6 @@ void	game_init(t_game *game)
 			"so_long");
 	mlx_hook(game->window, 17, 0, end_program, game);
 	open_images(game);
+	game->white_panel = new_panel(game, new_color(254, 254, 254, 0));
+	game->red_panel = new_panel(game, new_color(197, 4, 4, 0));
 }

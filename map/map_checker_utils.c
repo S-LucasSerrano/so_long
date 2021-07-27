@@ -3,7 +3,8 @@
 /* Returns TRUE if <c> is a valid map character */
 int	valid_char(char c)
 {
-	if (c == '1' || c == '0' || c == 'C' || c == 'E' || c == 'P')
+	if (c == '1' || c == '0' || c == 'C' || c == 'E' || c == 'P'
+		|| c == 'H' || c == 'V')
 		return (TRUE);
 	return (FALSE);
 }

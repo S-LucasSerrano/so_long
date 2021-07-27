@@ -11,13 +11,14 @@ LIBFT  = $(addprefix $(LIBF_DIR), $(LIBFT_A))
 GNL = get_next_line.c get_next_line_utils.c
 SRC_GNL = $(addprefix gnl/, $(GNL))
 
-MAP = map_reader.c map_checker.c map_checker_utils.c tilemap_generator.c
+MAP = 	map_reader.c map_checker.c map_checker_utils.c \
+		tilemap_generator.c enemy_generator.c
 SRC_MAP = $(addprefix map/, $(MAP))
 
-GAME =	game_init.c open_images.c \
-		input.c update.c \
+GAME =	game_init.c open_images.c open_wall_images.c open_panel.c \
+		input.c player_movement.c update.c enemy_behaviour.c \
 		render.c draw_wall.c \
-		end_program.c
+		reset.c end_program.c
 SRC_GAME = $(addprefix game/, $(GAME))
 
 OBJ = *.o

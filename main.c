@@ -30,9 +30,11 @@ t_bool	start(t_game *game, int argc, char **argv)
 	game->player.action_frames = 10;
 	game->collects_imgs.anim_frames = 25;
 	game->effect.frames = 7;
+	game->enemy_imgs.anim_frames = 16;
 	game->tilemap = map_init(argc, argv, game);
 	if (game->tilemap == NULL)
 		return (FALSE);
+	game->og_collects = game->collects;
 	game_init(game);
 	return (TRUE);
 }

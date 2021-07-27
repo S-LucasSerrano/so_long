@@ -1,37 +1,39 @@
 #include "../so_long.h"
 
-void	start_effect(t_effect *effect, t_vector pos)
+void	move_enemies(t_game *game);
+void	move_to_empty(t_game *game, t_tile *tile);
+void	move_to_exit(t_game *game, t_tile *tile);
+void	pick_collect(t_game *game, t_tile *tile);
+void	move_to_enemy(t_game *game, t_tile *tile);
+
+void	effect_anim(t_effect *effect, t_vector pos)
 {
 	effect->counter = 0;
 	effect->pos = pos;
 }
 
+void	action_anim(t_player *player)
+{
+	player->framecount = 0;
+	player->current_img = player->action_img;
+}
+
 t_bool	move_to(t_game *game, t_tile *tile)
 {
 	if (tile->type == EMPTY)
-	{
-		tile->type = PLAYER;
-		if (game->player.tile->type != EXIT)
-			game->player.tile->type = EMPTY;
-		game->player.tile = tile;
-	}
+		move_to_empty(game, tile);
 	else if (tile->type == COLLECTABLE)
-	{
-		tile->type = EMPTY;
-		game->collects--;
-		start_effect(&game->effect, tile->position);
-		game->player.framecount = 0;
-		game->player.current_img = game->player.action_img;
-	}
+		pick_collect(game, tile);
 	else if (tile->type == EXIT && game->collects <= 0)
+		move_to_exit(game, tile);
+	else if (tile->type == ENEMY)
 	{
-		start_effect(&game->effect, tile->position);
-		game->player.tile->type = EMPTY;
-		game->player.tile = NULL;
-		game->collects = -1;
+		move_to_enemy(game, tile);
+		return (FALSE);
 	}
 	else
 		return (FALSE);
+	move_enemies(game);
 	return (TRUE);
 }
 
@@ -42,6 +44,8 @@ int	input(int key, t_game *game)
 
 	if (key == ESC)
 		end_program(game);
+	else if (key == RESET)
+		return (reset(game));
 	if (game->player.tile == NULL)
 		return (0);
 	if (key == KEY_UP)

@@ -1,39 +1,7 @@
 #include "../so_long.h"
 
-static void	open_wallimgs_up(t_game *game)
-{
-	game->wall_imgs.block = mlx_xpm_file_to_image(game->mlx,
-			"sprites/wall_02.xpm",
-			&game->img_size.x, &game->img_size.y);
-	game->wall_imgs.up_left = mlx_xpm_file_to_image(game->mlx,
-			"sprites/wall_ul.xpm",
-			&game->img_size.x, &game->img_size.y);
-	game->wall_imgs.up = mlx_xpm_file_to_image(game->mlx,
-			"sprites/wall_u.xpm",
-			&game->img_size.x, &game->img_size.y);
-	game->wall_imgs.up_right = mlx_xpm_file_to_image(game->mlx,
-			"sprites/wall_ur.xpm",
-			&game->img_size.x, &game->img_size.y);
-	game->wall_imgs.right = mlx_xpm_file_to_image(game->mlx,
-			"sprites/wall_r.xpm",
-			&game->img_size.x, &game->img_size.y);
-}
-
-static void	open_wallimgs_down(t_game *game)
-{
-	game->wall_imgs.down_right = mlx_xpm_file_to_image(game->mlx,
-			"sprites/wall_dr.xpm",
-			&game->img_size.x, &game->img_size.y);
-	game->wall_imgs.down = mlx_xpm_file_to_image(game->mlx,
-			"sprites/wall_d.xpm",
-			&game->img_size.x, &game->img_size.y);
-	game->wall_imgs.down_left = mlx_xpm_file_to_image(game->mlx,
-			"sprites/wall_dl.xpm",
-			&game->img_size.x, &game->img_size.y);
-	game->wall_imgs.left = mlx_xpm_file_to_image(game->mlx,
-			"sprites/wall_l.xpm",
-			&game->img_size.x, &game->img_size.y);
-}
+void	open_wallimgs_up(t_game *game);
+void	open_wallimgs_down(t_game *game);
 
 static void	open_player_imgs(t_game *game)
 {
@@ -60,16 +28,33 @@ static void	open_collect_imgs(t_game *game)
 			&game->img_size.x, &game->img_size.y);
 }
 
-void	open_images(t_game *game)
+static void	open_enemy_imgs(t_game *game)
 {
-	open_wallimgs_up (game);
-	open_wallimgs_down (game);
-	open_player_imgs(game);
-	open_collect_imgs(game);
+	game->enemy_imgs.img_01 = mlx_xpm_file_to_image(game->mlx,
+			"sprites/enemy_01.xpm",
+			&game->img_size.x, &game->img_size.y);
+	game->enemy_imgs.img_02 = mlx_xpm_file_to_image(game->mlx,
+			"sprites/enemy_02.xpm",
+			&game->img_size.x, &game->img_size.y);
+	game->enemy_imgs.current = game->enemy_imgs.img_01;
+}
+
+static void	open_door_imgs(t_game *game)
+{
 	game->door_open_img = mlx_xpm_file_to_image(game->mlx,
 			"sprites/door_01.xpm",
 			&game->img_size.x, &game->img_size.y);
 	game->door_close_img = mlx_xpm_file_to_image(game->mlx,
 			"sprites/door_02.xpm",
 			&game->img_size.x, &game->img_size.y);
+}
+
+void	open_images(t_game *game)
+{
+	open_wallimgs_up (game);
+	open_wallimgs_down (game);
+	open_player_imgs(game);
+	open_collect_imgs(game);
+	open_enemy_imgs(game);
+	open_door_imgs(game);
 }
