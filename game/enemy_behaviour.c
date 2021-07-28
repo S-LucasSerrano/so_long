@@ -1,20 +1,27 @@
 #include "../so_long.h"
 
-void	kill_player(t_game *game, t_vector pos)
-{
-	game->player.tile = NULL;
-	effect_anim(&game->effect, pos);
-	mlx_put_image_to_window(game->mlx, game->window, game->red_panel, 0, 0);
-}
+void	follow_player(t_enemy *enemy, t_game *game);
 
 void	move_enemy_to(t_enemy *enemy, t_tile *tile)
 {
 	enemy->tile->type = EMPTY;
-	tile->type = ENEMY;
+	if (enemy->type == FOLLOW_ENEM)
+		tile->type = FOLLOWER;
+	else
+		tile->type = ENEMY;
 	enemy->tile = tile;
 }
 
-void	move_hor(t_enemy *enemy, t_game *game)
+t_bool	change_dir(t_enemy *enemy)
+{
+	if (enemy->dir == 0)
+		enemy->dir = 1;
+	else
+		enemy->dir = 0;
+	return (FALSE);
+}
+
+t_bool	move_hor(t_enemy *enemy, t_game *game)
 {
 	if (enemy->dir == 0)
 	{
@@ -26,7 +33,7 @@ void	move_hor(t_enemy *enemy, t_game *game)
 			kill_player(game, enemy->tile->position);
 		}
 		else
-			enemy->dir = 1;
+			return (change_dir(enemy));
 	}
 	else if (enemy-> dir == 1)
 	{
@@ -38,11 +45,12 @@ void	move_hor(t_enemy *enemy, t_game *game)
 			kill_player(game, enemy->tile->position);
 		}
 		else
-			enemy->dir = 0;
+			return (change_dir(enemy));
 	}
+	return (TRUE);
 }
 
-void	move_ver(t_enemy *enemy, t_game *game)
+t_bool	move_ver(t_enemy *enemy, t_game *game)
 {
 	if (enemy->dir == 0)
 	{
@@ -54,7 +62,7 @@ void	move_ver(t_enemy *enemy, t_game *game)
 			kill_player(game, enemy->tile->position);
 		}
 		else
-			enemy->dir = 1;
+			return (change_dir(enemy));
 	}
 	else if (enemy-> dir == 1)
 	{
@@ -66,8 +74,9 @@ void	move_ver(t_enemy *enemy, t_game *game)
 			kill_player(game, enemy->tile->position);
 		}
 		else
-			enemy->dir = 0;
+			return (change_dir(enemy));
 	}
+	return (TRUE);
 }
 
 void	move_enemies(t_game *game)
@@ -79,10 +88,12 @@ void	move_enemies(t_game *game)
 	current = game->enemy_list;
 	while (TRUE)
 	{
-		if (current->type == HORIZONTAL)
+		if (current->type == HORIZONTAL_ENEM)
 			move_hor(current, game);
-		else if (current->type == VERTICAL)
+		else if (current->type == VERTICAL_ENEM)
 			move_ver(current, game);
+		else if (current->type == FOLLOW_ENEM)
+			follow_player(current, game);
 		if (current->next == NULL)
 			break ;
 		current = current->next;

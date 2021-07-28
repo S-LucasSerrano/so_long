@@ -37,6 +37,8 @@ t_tiletype	define_tiletype(char definer)
 		return (EXIT);
 	if (definer == 'H' || definer == 'V')
 		return (ENEMY);
+	else if (definer == 'F')
+		return (FOLLOWER);
 	return (EMPTY);
 }
 
@@ -62,7 +64,7 @@ void	set_gamevars(t_tile *tile, t_game *game, char c)
 		game->player.tile = tile;
 	else if (tile->type == COLLECTABLE)
 		game->collects++;
-	else if (tile->type == ENEMY)
+	else if (tile->type == ENEMY || tile->type == FOLLOWER)
 		add_enemy(game, c, tile);
 }
 

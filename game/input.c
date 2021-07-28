@@ -26,7 +26,7 @@ t_bool	move_to(t_game *game, t_tile *tile)
 		pick_collect(game, tile);
 	else if (tile->type == EXIT && game->collects <= 0)
 		move_to_exit(game, tile);
-	else if (tile->type == ENEMY)
+	else if (tile->type == ENEMY || tile->type == FOLLOWER)
 	{
 		move_to_enemy(game, tile);
 		return (FALSE);

@@ -30,13 +30,20 @@ static void	open_collect_imgs(t_game *game)
 
 static void	open_enemy_imgs(t_game *game)
 {
-	game->enemy_imgs.img_01 = mlx_xpm_file_to_image(game->mlx,
+	game->enemy_imgs.basic_01 = mlx_xpm_file_to_image(game->mlx,
 			"sprites/enemy_01.xpm",
 			&game->img_size.x, &game->img_size.y);
-	game->enemy_imgs.img_02 = mlx_xpm_file_to_image(game->mlx,
+	game->enemy_imgs.basic_02 = mlx_xpm_file_to_image(game->mlx,
 			"sprites/enemy_02.xpm",
 			&game->img_size.x, &game->img_size.y);
-	game->enemy_imgs.current = game->enemy_imgs.img_01;
+	game->enemy_imgs.basic_current = game->enemy_imgs.basic_01;
+	game->enemy_imgs.follow_01 = mlx_xpm_file_to_image(game->mlx,
+			"sprites/enemy_03.xpm",
+			&game->img_size.x, &game->img_size.y);
+	game->enemy_imgs.follow_02 = mlx_xpm_file_to_image(game->mlx,
+			"sprites/enemy_04.xpm",
+			&game->img_size.x, &game->img_size.y);
+	game->enemy_imgs.follow_current = game->enemy_imgs.follow_01;
 }
 
 static void	open_door_imgs(t_game *game)

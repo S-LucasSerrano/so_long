@@ -22,19 +22,25 @@ void	print_tilemap(t_tile **tilemap)
 	}
 }
 
-t_bool	start(t_game *game, int argc, char **argv)
+void	anim_setup(t_game *game)
 {
-	game->collects = 0;
-	game->moves = 0;
 	game->player.idle_frames = 17;
 	game->player.action_frames = 10;
 	game->collects_imgs.anim_frames = 25;
 	game->effect.frames = 7;
-	game->enemy_imgs.anim_frames = 16;
+	game->enemy_imgs.basic_anim = 16;
+	game->enemy_imgs.follow_anim = 6;
+}
+
+t_bool	start(t_game *game, int argc, char **argv)
+{
+	game->collects = 0;
+	game->moves = 0;
 	game->tilemap = map_init(argc, argv, game);
 	if (game->tilemap == NULL)
 		return (FALSE);
 	game->og_collects = game->collects;
+	anim_setup(game);
 	game_init(game);
 	return (TRUE);
 }

@@ -2,7 +2,7 @@
 # define SO_LONG_H
 
 # include "basics.h"
-# include "mlx.h"
+# include <mlx.h>
 
 /* Size of every sprite */
 # define IMG_SIZE 64
@@ -16,7 +16,8 @@ typedef enum e_tiletype
 	COLLECTABLE = 'C',
 	PLAYER = 'P',
 	EXIT = 'E',
-	ENEMY = 'M'
+	ENEMY = 'M',
+	FOLLOWER = 'F'
 }	t_tiletype;
 
 typedef struct s_tile
@@ -88,17 +89,21 @@ typedef struct s_color
 
 typedef enum e_enemytype
 {
-	HORIZONTAL = 'H',
-	VERTICAL = 'V',
-	FOLLOWER = 'F'
+	HORIZONTAL_ENEM = 'H',
+	VERTICAL_ENEM = 'V',
+	FOLLOW_ENEM = 'F'
 }	t_enemyytpe;
 
 typedef struct s_enemy_imgs
 {
-	void	*current;
-	int		anim_frames;
-	void	*img_01;
-	void	*img_02;
+	int		basic_anim;
+	void	*basic_current;
+	void	*basic_01;
+	void	*basic_02;
+	int		follow_anim;
+	void	*follow_current;
+	void	*follow_01;
+	void	*follow_02;
 }	t_enemy_img;
 
 /* Struct to make a list of enemies */
@@ -179,6 +184,7 @@ void	action_anim(t_player *player);
 void	color_window(t_game *game, int color);
 
 void	remove_player(t_game *game);
+void	kill_player(t_game *game, t_vector pos);
 int		reset(t_game *game);
 int		end_program(t_game *game);
 

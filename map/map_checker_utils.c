@@ -4,7 +4,7 @@
 int	valid_char(char c)
 {
 	if (c == '1' || c == '0' || c == 'C' || c == 'E' || c == 'P'
-		|| c == 'H' || c == 'V')
+		|| c == 'H' || c == 'V' || c == 'F')
 		return (TRUE);
 	return (FALSE);
 }

@@ -16,7 +16,7 @@ MAP = 	map_reader.c map_checker.c map_checker_utils.c \
 SRC_MAP = $(addprefix map/, $(MAP))
 
 GAME =	game_init.c open_images.c open_wall_images.c open_panel.c \
-		input.c player_movement.c update.c enemy_behaviour.c \
+		input.c player_movement.c player_end.c update.c enemy_behaviour.c  follower_behaviour.c \
 		render.c draw_wall.c \
 		reset.c end_program.c
 SRC_GAME = $(addprefix game/, $(GAME))
@@ -50,6 +50,17 @@ exe: re
 	@echo $(YELLOW)"     - Executing $(NAME)... \n"$(NONE)
 	@./$(NAME) $(m)
 	@echo $(YELLOW)"\n     - Done -"$(NONE)
+
+play: all
+	@echo $(YELLOW)"     - Playing maps form 0 to 6... \n"$(NONE)
+	@make -C ./ clean
+	@./$(NAME) map_files/map_0.ber
+	@./$(NAME) map_files/map_1.ber
+	@./$(NAME) map_files/map_2.ber
+	@./$(NAME) map_files/map_3.ber
+	@./$(NAME) map_files/map_4.ber
+	@./$(NAME) map_files/map_5.ber
+	@./$(NAME) map_files/map_6.ber
 
 norm:
 	@echo $(GRAY) ""

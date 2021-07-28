@@ -1,11 +1,5 @@
 #include "../so_long.h"
 
-void	remove_player(t_game *game)
-{
-	game->player.tile->type = EMPTY;
-	game->player.tile = NULL;
-}
-
 void	move_to_empty(t_game *game, t_tile *tile)
 {
 	tile->type = PLAYER;
