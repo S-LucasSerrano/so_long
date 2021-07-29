@@ -18,7 +18,7 @@ int	ft_chartable_linecount(char **table)
 /* Frees a 2D table */
 void	ft_free_chartable(char **table)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (table[i])
