@@ -2,6 +2,7 @@
 #include "../map/map.h"
 
 void	open_images(t_game *game);
+t_tile	**generate_tilemap(char **map, t_game *game);
 
 /* Creates -with malloc- a tilemap acording to the
 first file of argv. Returns NULL if an error occurs. */
@@ -39,4 +40,29 @@ void	game_init(t_game *game)
 	open_images(game);
 	game->white_panel = new_panel(game, new_color(254, 254, 254, 0));
 	game->red_panel = new_panel(game, new_color(197, 4, 4, 0));
+}
+
+/* Sets the frames of all animatios */
+static void	anim_setup(t_game *game)
+{
+	game->player.idle_frames = 17;
+	game->player.action_frames = 10;
+	game->collects_imgs.anim_frames = 25;
+	game->effect.frames = 7;
+	game->enemy_imgs.basic_anim = 16;
+	game->enemy_imgs.follow_anim = 6;
+}
+
+/* Initialize the <game> struct */
+t_bool	start(t_game *game, int argc, char **argv)
+{
+	game->collects = 0;
+	game->moves = 0;
+	game->tilemap = map_init(argc, argv, game);
+	if (game->tilemap == NULL)
+		return (FALSE);
+	game->og_collects = game->collects;
+	anim_setup(game);
+	game_init(game);
+	return (TRUE);
 }

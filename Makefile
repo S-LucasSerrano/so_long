@@ -52,7 +52,7 @@ exe: re
 	@echo $(YELLOW)"\n     - Done -"$(NONE)
 
 play: all
-	@echo $(YELLOW)"     - Playing maps form 0 to 6... \n"$(NONE)
+	@echo $(YELLOW)"     - Playing all maps... \n"$(NONE)
 	@make -C ./ clean
 	@./$(NAME) map_files/map_0.ber
 	@./$(NAME) map_files/map_1.ber
@@ -61,6 +61,8 @@ play: all
 	@./$(NAME) map_files/map_4.ber
 	@./$(NAME) map_files/map_5.ber
 	@./$(NAME) map_files/map_6.ber
+	@./$(NAME) map_files/long.ber
+	@./$(NAME) map_files/sergio.ber
 
 norm:
 	@echo $(GRAY) ""

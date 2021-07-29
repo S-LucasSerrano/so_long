@@ -168,9 +168,7 @@ typedef struct s_game
 // ---------------------------
 // FUNCTIONS
 
-t_tile	**map_init(int argc, char **argv, t_game *game);
-t_tile	**generate_tilemap(char **map, t_game *game);
-void	game_init(t_game *game);
+t_bool	start(t_game *game, int argc, char **argv);
 
 t_color	new_color(int r, int g, int b, int a);
 void	*new_panel(t_game *game, t_color color);
@@ -181,7 +179,6 @@ void	render(t_game game);
 
 void	effect_anim(t_effect *effect, t_vector pos);
 void	action_anim(t_player *player);
-void	color_window(t_game *game, int color);
 
 void	remove_player(t_game *game);
 void	kill_player(t_game *game, t_vector pos);
