@@ -3,6 +3,9 @@
 t_bool	move_hor(t_enemy *enemy, t_game *game);
 t_bool	move_ver(t_enemy *enemy, t_game *game);
 
+/* Returns 1 if <value> is negative.
+* 0 if positive.
+* And -1 if it is exaclty 0. */
 int	define_dir(int value)
 {
 	if (value < 0)
@@ -12,6 +15,7 @@ int	define_dir(int value)
 	return (-1);
 }
 
+/* Moves <enemy> on tile closer to the player */
 void	follow_player(t_enemy *enemy, t_game *game)
 {
 	int	dis_x;

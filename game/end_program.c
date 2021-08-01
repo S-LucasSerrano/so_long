@@ -29,6 +29,7 @@ void	free_enemies(t_game *game)
 	}
 }
 
+/* Frees all allocated memory and makes exit(0) */
 int	end_program(t_game *game)
 {
 	free_tilemap(game);

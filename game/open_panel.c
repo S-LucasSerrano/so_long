@@ -1,5 +1,6 @@
 #include "../so_long.h"
 
+/* Returns a t_color struct */
 t_color	new_color(int r, int g, int b, int a)
 {
 	t_color	color;
@@ -11,6 +12,7 @@ t_color	new_color(int r, int g, int b, int a)
 	return (color);
 }
 
+/* Set all pixels in <panel> to <color> */
 void	color_panel(t_panel *panel, t_color color)
 {
 	int	x;
@@ -34,6 +36,7 @@ void	color_panel(t_panel *panel, t_color color)
 	}
 }
 
+/* Returns a colred image of the same size as the window */
 void	*new_panel(t_game *game, t_color color)
 {
 	t_panel	panel;

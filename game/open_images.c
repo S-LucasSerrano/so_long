@@ -56,6 +56,7 @@ static void	open_door_imgs(t_game *game)
 			&game->img_size.x, &game->img_size.y);
 }
 
+/* Opens with the mlx all images needed in the game */
 void	open_images(t_game *game)
 {
 	open_wallimgs_up (game);

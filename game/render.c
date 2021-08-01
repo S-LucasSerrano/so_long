@@ -2,6 +2,7 @@
 
 void	draw_wall(t_tile tile, t_game game, t_vector pos);
 
+/* Draws the corresponding image of the tile type */
 static void	draw_image(t_tile tile, t_game game, t_vector pos)
 {
 	if (tile.type == WALL)
@@ -29,6 +30,7 @@ static void	draw_image(t_tile tile, t_game game, t_vector pos)
 			game.enemy_imgs.follow_current, pos.x, pos.y);
 }
 
+/* If the effect counter is less than its animation frames, draws it */
 static void	draw_effect(t_game game)
 {
 	if (game.effect.counter < game.effect.frames)
@@ -37,6 +39,8 @@ static void	draw_effect(t_game game)
 			game.effect.pos.x, game.effect.pos.y);
 }
 
+/* Writes the number of moves on the window,
+changing its color if the game is completed  */
 static void	draw_text(t_game game)
 {
 	char	*str;

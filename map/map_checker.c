@@ -16,6 +16,7 @@ int	valid_file(int argc, char *file)
 	return (1);
 }
 
+/* Initialize the data needed to check if the map is valid */
 static t_mapcheckerdata	init_checkerdata(char **map)
 {
 	t_mapcheckerdata	data;
@@ -30,6 +31,8 @@ static t_mapcheckerdata	init_checkerdata(char **map)
 	return (data);
 }
 
+/* Checks to do to each indivial tile of the map.
+* When it founds one, pritns an error and returns FALSE. */
 static int	checks(char **map, t_mapcheckerdata *data)
 {
 	int	x;
@@ -50,7 +53,8 @@ static int	checks(char **map, t_mapcheckerdata *data)
 	return (TRUE);
 }
 
-/* Returns TRUE if the map is valid */
+/* Returns TRUE if the map is valid.
+* Printing an error message and returning FALSE if not */
 int	valid_map(char **map)
 {
 	t_mapcheckerdata	data;

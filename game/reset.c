@@ -14,6 +14,7 @@ static void	reset_enemies(t_enemy *enemy)
 	}	
 }
 
+/* Returns the game to its original state */
 int	reset(t_game *game)
 {
 	int	x;

@@ -66,6 +66,8 @@ static void	enemy_animation(t_enemy_img *img)
 	follower_count++;
 }
 
+/* Calculates all animations and render.
+* Called once each frame */
 int	update(t_game *game)
 {
 	player_animation(&game->player);

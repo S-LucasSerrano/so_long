@@ -6,18 +6,21 @@ void	move_to_exit(t_game *game, t_tile *tile);
 void	pick_collect(t_game *game, t_tile *tile);
 void	move_to_enemy(t_game *game, t_tile *tile);
 
+/* Places and starts the "particles" effect */
 void	effect_anim(t_effect *effect, t_vector pos)
 {
 	effect->counter = 0;
 	effect->pos = pos;
 }
 
+/* Starts the action pose animation of the player */
 void	action_anim(t_player *player)
 {
 	player->framecount = 0;
 	player->current_img = player->action_img;
 }
 
+/* Move the player to <tile> doing whats needed based on its type */
 t_bool	move_to(t_game *game, t_tile *tile)
 {
 	if (tile->type == EMPTY)
@@ -37,7 +40,7 @@ t_bool	move_to(t_game *game, t_tile *tile)
 	return (TRUE);
 }
 
-/* Input management */
+/* Input management. Called each time a key is pressed. */
 int	input(int key, t_game *game)
 {
 	t_bool	moved;

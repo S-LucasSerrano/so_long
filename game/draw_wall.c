@@ -42,6 +42,7 @@ t_bool	draw_sides(t_tile tile, t_game game, t_vector pos)
 	return (TRUE);
 }
 
+/* Draws the corresponding sprite for the wall at <pos> */
 void	draw_wall(t_tile tile, t_game game, t_vector pos)
 {
 	if (draw_corner(tile, game, pos))

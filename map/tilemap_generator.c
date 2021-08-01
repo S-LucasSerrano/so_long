@@ -57,7 +57,7 @@ void	setup_tile(t_tile **tilemap, int x, int y)
 	tilemap[y][x].right = &tilemap[y][x + 1];
 }
 
-/* I the tile is a not an empty or wall tile, set it up in the game struct */
+/* Add info to the game struct if needed */
 void	set_gamevars(t_tile *tile, t_game *game, char c)
 {
 	if (tile->type == PLAYER)
@@ -70,7 +70,7 @@ void	set_gamevars(t_tile *tile, t_game *game, char c)
 
 /* Returns a t_tile table filled according to <map>,
 each line ends in a tile of type 0,
-each column ends in a NULL pointer */
+columns ends in a NULL pointer */
 t_tile	**generate_tilemap(char **map, t_game *game)
 {
 	t_tile		**tilemap;

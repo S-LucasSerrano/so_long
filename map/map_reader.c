@@ -44,7 +44,7 @@ static char	**alloc_columns(char *file)
 	return (map);
 }
 
-/* ¡MALLOC! - Returns a 2D map as found in file */
+/* Creates -with malloc- a 2D char map as found in file */
 char	**read_map(char *file)
 {
 	char	**map;

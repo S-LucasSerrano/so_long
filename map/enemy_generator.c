@@ -26,7 +26,7 @@ t_enemy	*last_enemy(t_enemy *list)
 	return (list);
 }
 
-/* ¡Malloc!, Adds an enemy at the end of the list */
+/* Adds -using malloc- an enemy at the end of the list */
 void	add_enemy(t_game *game, t_enemyytpe type, t_tile *tile)
 {
 	t_enemy	*new;

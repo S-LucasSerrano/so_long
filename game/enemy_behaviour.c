@@ -2,6 +2,7 @@
 
 void	follow_player(t_enemy *enemy, t_game *game);
 
+/* Change the tile of <enemy> */
 void	move_enemy_to(t_enemy *enemy, t_tile *tile)
 {
 	enemy->tile->type = EMPTY;
@@ -12,6 +13,8 @@ void	move_enemy_to(t_enemy *enemy, t_tile *tile)
 	enemy->tile = tile;
 }
 
+/* If <enemy> dir is 0, set it to 1.
+* If it is 1, set it to 0. */
 t_bool	change_dir(t_enemy *enemy)
 {
 	if (enemy->dir == 0)
@@ -21,6 +24,7 @@ t_bool	change_dir(t_enemy *enemy)
 	return (FALSE);
 }
 
+/* Move <enemy> to the left or right based on his direction */
 t_bool	move_hor(t_enemy *enemy, t_game *game)
 {
 	if (enemy->dir == 0)
@@ -50,6 +54,7 @@ t_bool	move_hor(t_enemy *enemy, t_game *game)
 	return (TRUE);
 }
 
+/* Move <enemy> up or down based on his direction */
 t_bool	move_ver(t_enemy *enemy, t_game *game)
 {
 	if (enemy->dir == 0)
@@ -79,6 +84,7 @@ t_bool	move_ver(t_enemy *enemy, t_game *game)
 	return (TRUE);
 }
 
+/* Go though the enemy list moving all of them according to their type */
 void	move_enemies(t_game *game)
 {
 	t_enemy	*current;

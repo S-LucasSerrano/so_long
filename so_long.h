@@ -20,6 +20,7 @@ typedef enum e_tiletype
 	FOLLOWER = 'F'
 }	t_tiletype;
 
+/* Struct for each tile */
 typedef struct s_tile
 {
 	t_tiletype		type;
@@ -56,7 +57,7 @@ typedef struct s_coll_img
 	void	*img_1;
 }	t_collect_img;
 
-/* Info for the effect after collecting something */
+/* Info for the particle-like effect */
 typedef struct s_effect
 {
 	void		*img;
@@ -94,6 +95,7 @@ typedef enum e_enemytype
 	FOLLOW_ENEM = 'F'
 }	t_enemyytpe;
 
+/* Enemies animation info */
 typedef struct s_enemy_imgs
 {
 	int		basic_anim;
