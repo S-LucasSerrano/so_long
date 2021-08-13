@@ -5,6 +5,7 @@ https://github.com/S-LucasSerrano/miniLibX_sample
 
 The aim of this project is to create a small 2D game where players have to pick up all collectables and go to the exit making as few moves as possible. In my case, the game is about a muscular gardener cleaning up her garden from weeds. While ¿alien? creatures stand in her way. Because they are on mars. Or something.
 
+![gif_01](https://drive.google.com/uc?export=view&id=1lHOYdkrSTlfExwcKfGCXHiamJJIL0q9h)
 
 ### Index
 ---
@@ -43,6 +44,8 @@ See some examples in the ``map_files`` folder of this project.
 Use ``WASD`` to move. You move one tile at a time. Enemies move after you do, also one tile at a time, and will kill you when you move into their tile or they move into yours. After picking up all weeds, the exits open and you may leave to see how many moves you’ve used to solve the map.
 
 You can restart the game with ``R``, or close it with ``esc``.
+
+![gif_02](https://drive.google.com/uc?export=view&id=13aqJkX7vRyEvr9REWksoYbGFq_Y33oi-)
 
 ###### Execute the game
 To play you can use some of the makefile rules, or execute the file _so_long.out_ if it's been generated, passing the map you want to play as parameter (``./so_long.out mapFileToPlay.ber``). The make file has the following rules:
@@ -126,6 +129,8 @@ Every time the player spends a turn, by moving or picking a collectable, I go th
 | Vertical and Horizontal | They move left or right / up or down depending on their current direction. Because every enemy has a pointer to his tile, we can go, to move up for example, to the up pointer of their current tile and check if it is blocked or not. An enemy will only move into a tile if its type is EMPTY or PLAYER. Killing him if that is the case. Meaning that collectables and other enemies can block their way. If they can't move to the next tile in their current direction, they change it by spending one turn without moving. |
 | Follower | We first calculate his distance to the player in both axes, to try to move him in the  axis that is closer to him. After making ``enemy_position - player_position`` we know that if the value is negative the player is on the left, and if it’s positive it is on the right. And the same with up and down. Knowing in which direction the enemy needs to move. But if the tile in that direction is blocked, the enemy will try to get closer to the player in the other axis. So this enemy can be tricked to get stuck on a corner. |
 
+![gif_03](https://drive.google.com/uc?export=view&id=1BtgX7zSWJkOj_RySpeqUsVakeiolUCao)
+
 #### Render, Animation and VFX
 Hooked to the loop is the ``update`` function. Which is called once per frame. Then, the current image of each animated sprite is calculated. For **idles** I have an ``animation_frames`` variable that defines how many frames last each image of the cycle. I have the ``current_image``, a pointer to the image that currently will be drawn, pointers to the two images of the animation cycle, and a ``counter`` that can be either an int in a struct or a static variable within a function if that value is not needed outside of that function. The counter adds one each frame until it reaches the animation frames, changing the current image.
 ````c
@@ -191,6 +196,7 @@ typedef struct s_game
 }	t_game;
 ````
 
+![gif_04](https://drive.google.com/uc?export=view&id=1VDS3PbZLJ1wkZcaZaGOaA4SBIrQME07d)
 
 ### Contact
 ---
