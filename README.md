@@ -197,12 +197,3 @@ typedef struct s_game
 ````
 
 ![gif_04](https://drive.google.com/uc?export=view&id=1VDS3PbZLJ1wkZcaZaGOaA4SBIrQME07d)
-
-### Contact
----
-Feel free to clone this project, check the code or contact me if you want or find something wrong or missing in this documentation.
-
-* 42 Login:	*slucas-s*
-* Email:		*Lucas.ss.Serrano@Gmail.com*
-
-Good luck with your projects!
